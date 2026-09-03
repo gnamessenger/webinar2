@@ -144,48 +144,63 @@ section:last-of-type {
   }
   .wj-journey {
     display: flex !important;
+    flex-direction: column !important;
     align-items: flex-start !important;
-    justify-content: center !important;
+    justify-content: flex-start !important;
     width: 100% !important;
+    max-width: 340px !important;
     margin: 0 auto 36px !important;
     padding: 0 16px !important;
     box-sizing: border-box !important;
+    gap: 0 !important;
   }
   .wj-step {
     display: flex !important;
-    flex-direction: column !important;
+    flex-direction: row !important;
     align-items: center !important;
     gap: 14px !important;
-    flex: 0 0 auto !important;
-    min-width: 110px !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    position: relative !important;
+    padding-bottom: 22px !important;
+  }
+  .wj-step:not(:last-child):before {
+    content: '' !important;
+    position: absolute !important;
+    left: 21px !important;
+    top: 44px !important;
+    bottom: 0 !important;
+    width: 2px !important;
+    background: #333 !important;
   }
   .wj-dot {
-    width: 64px !important;
-    height: 64px !important;
+    width: 44px !important;
+    height: 44px !important;
     border-radius: 50% !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    font-size: 26px !important;
+    font-size: 18px !important;
     font-weight: 700 !important;
     flex-shrink: 0 !important;
+    margin: 0 !important;
   }
   .wj-dot-done   { background:#5EEAD4 !important; color:#0c0a13 !important; }
   .wj-dot-locked {
     background: #0d0d0d !important;
     color: #5EEAD4 !important;
     border: 2px solid #5EEAD4 !important;
-    font-size: 28px !important;
+    font-size: 18px !important;
   }
   .wj-dot-dark   {
     background: #252525 !important;
     border: 1.5px solid #555 !important;
     color: #888 !important;
-    font-size: 22px !important;
+    font-size: 16px !important;
   }
   .wj-label {
-    font-size: 15px !important;
-    text-align: center !important;
+    font-size: 14px !important;
+    text-align: left !important;
     line-height: 1.5 !important;
     white-space: normal !important;
   }
@@ -193,6 +208,7 @@ section:last-of-type {
   .wj-label-locked { color:#5EEAD4 !important; font-weight:700 !important; }
   .wj-label-dark   { color:#666 !important; }
   .wj-line {
+    display: none !important;
     flex: 1 !important;
     height: 6px !important;
     margin-top: 29px !important;
