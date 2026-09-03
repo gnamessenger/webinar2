@@ -144,11 +144,10 @@ section:last-of-type {
   }
   .wj-journey {
     display: flex !important;
-    flex-direction: column !important;
+    flex-direction: row !important;
     align-items: flex-start !important;
-    justify-content: flex-start !important;
+    justify-content: center !important;
     width: 100% !important;
-    max-width: 340px !important;
     margin: 0 auto 36px !important;
     padding: 0 16px !important;
     box-sizing: border-box !important;
@@ -156,31 +155,20 @@ section:last-of-type {
   }
   .wj-step {
     display: flex !important;
-    flex-direction: row !important;
+    flex-direction: column !important;
     align-items: center !important;
     gap: 14px !important;
-    width: 100% !important;
+    flex: 1 1 0 !important;
     min-width: 0 !important;
-    position: relative !important;
-    padding-bottom: 22px !important;
-  }
-  .wj-step:not(:last-child):before {
-    content: '' !important;
-    position: absolute !important;
-    left: 21px !important;
-    top: 44px !important;
-    bottom: 0 !important;
-    width: 2px !important;
-    background: #333 !important;
   }
   .wj-dot {
-    width: 44px !important;
-    height: 44px !important;
+    width: 56px !important;
+    height: 56px !important;
     border-radius: 50% !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    font-size: 18px !important;
+    font-size: 22px !important;
     font-weight: 700 !important;
     flex-shrink: 0 !important;
     margin: 0 !important;
@@ -190,17 +178,17 @@ section:last-of-type {
     background: #0d0d0d !important;
     color: #5EEAD4 !important;
     border: 2px solid #5EEAD4 !important;
-    font-size: 18px !important;
+    font-size: 22px !important;
   }
   .wj-dot-dark   {
     background: #252525 !important;
     border: 1.5px solid #555 !important;
     color: #888 !important;
-    font-size: 16px !important;
+    font-size: 18px !important;
   }
   .wj-label {
-    font-size: 14px !important;
-    text-align: left !important;
+    font-size: 12.5px !important;
+    text-align: center !important;
     line-height: 1.5 !important;
     white-space: normal !important;
   }
@@ -208,11 +196,11 @@ section:last-of-type {
   .wj-label-locked { color:#5EEAD4 !important; font-weight:700 !important; }
   .wj-label-dark   { color:#666 !important; }
   .wj-line {
-    display: none !important;
+    display: block !important;
     flex: 1 !important;
     height: 6px !important;
-    margin-top: 29px !important;
-    min-width: 40px !important;
+    margin-top: 25px !important;
+    min-width: 16px !important;
     border-radius: 2px !important;
     background: #222 !important;
     position: relative !important;
@@ -306,35 +294,11 @@ section:last-of-type {
     .wj-reveal-item  { font-size:15px !important; }
     .wj-reveal       { padding:14px 12px !important; }
     .wj-reveal-label { font-size:19px !important; }
-    .wj-journey      {
-      flex-direction: column !important;
-      align-items: flex-start !important;
-      justify-content: flex-start !important;
-      gap: 0 !important;
-      padding: 0 6px !important;
-    }
-    .wj-step {
-      flex-direction: row !important;
-      align-items: center !important;
-      gap: 14px !important;
-      width: 100% !important;
-      min-width: 0 !important;
-      position: relative !important;
-      padding-bottom: 22px !important;
-    }
-    .wj-step:not(:last-child):before {
-      content: '' !important;
-      position: absolute !important;
-      left: 21px !important;
-      top: 44px !important;
-      bottom: 0 !important;
-      width: 2px !important;
-      background: #333 !important;
-    }
-    .wj-dot          { width: 44px !important; height: 44px !important; font-size: 18px !important; margin: 0 !important; }
+    .wj-journey      { padding: 0 !important; }
+    .wj-dot          { width: 44px !important; height: 44px !important; font-size: 18px !important; }
     .wj-dot-locked   { font-size: 18px !important; }
-    .wj-label        { font-size: 13.5px !important; text-align: left !important; }
-    .wj-line         { display: none !important; }
+    .wj-label        { font-size: 10.5px !important; }
+    .wj-line         { margin-top: 20px !important; min-width: 12px !important; }
   }
   #button-GsH_lyELk5.wj-locked-btn #button-GsH_lyELk5_btn {
     pointer-events: none !important;
