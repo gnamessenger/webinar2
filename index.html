@@ -443,36 +443,19 @@ section:last-of-type {
     wjAutoplayed = true;
   }
   wjAutoplay();
-  var wjIv = setInterval(function(){
-    wjAutoplay();
-  }, 400);
+  var wjIv = setInterval(wjAutoplay, 400);
   setTimeout(function(){ clearInterval(wjIv); }, 15000);
 
-  var wjOverlay = document.createElement('div');
-  wjOverlay.style.cssText = 'position:fixed;inset:0;z-index:999999;background:transparent;';
-  document.body.appendChild(wjOverlay);
-
-  function wjUnmuteOnInteract(){
+  function wjUnmute(){
     var v = document.getElementById('bjVideoStep2');
-    if (v) {
-      v.muted = false;
-      v.removeAttribute('muted');
-      var wjResumeTries = 0;
-      var wjResumeIv = setInterval(function(){
-        wjResumeTries++;
-        if (v.paused) {
-          var p2 = v.play();
-          if (p2 && p2.catch) p2.catch(function(){});
-        }
-        if (wjResumeTries > 15) clearInterval(wjResumeIv);
-      }, 100);
-    }
-    if (wjOverlay.parentNode) wjOverlay.parentNode.removeChild(wjOverlay);
-    document.removeEventListener('keydown', wjUnmuteOnInteract, true);
+    if (v) v.muted = false;
+    document.removeEventListener('click', wjUnmute, true);
+    document.removeEventListener('touchend', wjUnmute, true);
+    document.removeEventListener('keydown', wjUnmute, true);
   }
-  wjOverlay.addEventListener('click', wjUnmuteOnInteract);
-  wjOverlay.addEventListener('touchstart', wjUnmuteOnInteract, {passive:true});
-  document.addEventListener('keydown', wjUnmuteOnInteract, true);
+  document.addEventListener('click', wjUnmute, true);
+  document.addEventListener('touchend', wjUnmute, true);
+  document.addEventListener('keydown', wjUnmute, true);
 })();
 </script>
 </body></html>
