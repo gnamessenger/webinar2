@@ -448,6 +448,10 @@ section:last-of-type {
   }, 400);
   setTimeout(function(){ clearInterval(wjIv); }, 15000);
 
+  var wjOverlay = document.createElement('div');
+  wjOverlay.style.cssText = 'position:fixed;inset:0;z-index:999999;background:transparent;';
+  document.body.appendChild(wjOverlay);
+
   function wjUnmuteOnInteract(){
     var v = document.getElementById('bjVideoStep2');
     if (v) {
@@ -463,13 +467,12 @@ section:last-of-type {
         if (wjResumeTries > 15) clearInterval(wjResumeIv);
       }, 100);
     }
-    ['click','touchstart','keydown','scroll'].forEach(function(evt){
-      document.removeEventListener(evt, wjUnmuteOnInteract, true);
-    });
+    if (wjOverlay.parentNode) wjOverlay.parentNode.removeChild(wjOverlay);
+    document.removeEventListener('keydown', wjUnmuteOnInteract, true);
   }
-  ['click','touchstart','keydown','scroll'].forEach(function(evt){
-    document.addEventListener(evt, wjUnmuteOnInteract, true);
-  });
+  wjOverlay.addEventListener('click', wjUnmuteOnInteract);
+  wjOverlay.addEventListener('touchstart', wjUnmuteOnInteract, {passive:true});
+  document.addEventListener('keydown', wjUnmuteOnInteract, true);
 })();
 </script>
 </body></html>
