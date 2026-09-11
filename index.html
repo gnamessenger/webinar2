@@ -477,4 +477,28 @@ section:last-of-type {
   }
 })();
 </script>
+<script>
+(function(){
+  var badge = document.createElement('div');
+  badge.id = 'wj-key-badge';
+  badge.style.cssText = 'position:absolute;z-index:9998;font-size:26px;line-height:1;pointer-events:none;';
+  badge.textContent = '\uD83D\uDD11';
+  document.body.appendChild(badge);
+
+  function wjPosition(){
+    var native = document.getElementById('minute-timer-7N5eeOpd8p');
+    if (!native) return;
+    var r = native.getBoundingClientRect();
+    if (r.width === 0 && r.height === 0) { badge.style.display = 'none'; return; }
+    badge.style.display = '';
+    badge.style.top = (r.top + window.scrollY + r.height / 2 - 15) + 'px';
+    badge.style.left = (r.left + window.scrollX - 40) + 'px';
+  }
+
+  wjPosition();
+  window.addEventListener('scroll', wjPosition, {passive:true});
+  window.addEventListener('resize', wjPosition);
+  setInterval(wjPosition, 600);
+})();
+</script>
 </body></html>
