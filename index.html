@@ -441,7 +441,7 @@ section:last-of-type {
     if (cs.position === 'static') wrap.style.position = 'relative';
     v._wjOverlayDone = true;
     var overlay = document.createElement('div');
-    overlay.style.cssText = 'position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;cursor:pointer;z-index:10;';
+    overlay.style.cssText = 'position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:14%;box-sizing:border-box;gap:10px;cursor:pointer;z-index:10;';
     function wjSyncPos(){
       overlay.style.top = v.offsetTop + 'px';
       overlay.style.left = v.offsetLeft + 'px';
