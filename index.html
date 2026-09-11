@@ -477,4 +477,13 @@ section:last-of-type {
   }
 })();
 </script>
+<script>
+(function(){
+  var wrap = document.createElement('div');
+  wrap.id = 'wj-minimal-test';
+  wrap.style.cssText = 'position:fixed;top:100px;left:20px;z-index:9998;background:red;color:#fff;padding:10px;';
+  wrap.textContent = 'MINIMAL TEST';
+  document.body.appendChild(wrap);
+})();
+</script>
 </body></html>
