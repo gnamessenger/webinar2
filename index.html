@@ -486,4 +486,23 @@ section:last-of-type {
   document.body.appendChild(wrap);
 })();
 </script>
+<script>
+(function(){
+  var wrap = document.createElement('div');
+  wrap.id = 'wj-minimal-test';
+  wrap.style.cssText = 'position:fixed;top:100px;left:20px;z-index:9998;background:red;color:#fff;padding:10px;';
+  wrap.textContent = 'MINIMAL TEST';
+  document.body.appendChild(wrap);
+
+  function wjTick(){
+    var anchor = document.querySelector('.wj-context');
+    if (anchor) {
+      var r = anchor.getBoundingClientRect();
+      wrap.textContent = 'rect top=' + Math.round(r.top) + ' left=' + Math.round(r.left);
+    }
+  }
+  wjTick();
+  setInterval(wjTick, 500);
+})();
+</script>
 </body></html>
