@@ -504,6 +504,30 @@ section:last-of-type {
 </script>
 <script>
 (function(){
+  var label = document.createElement('div');
+  label.id = 'wj-timer-caption';
+  label.style.cssText = 'position:absolute;z-index:9998;color:#5EEAD4;font-weight:800;font-size:15px;font-family:"Pretendard","Apple SD Gothic Neo",sans-serif;text-align:center;pointer-events:none;white-space:nowrap;';
+  label.textContent = '1:1 진단상담 신청 오픈까지';
+  document.body.appendChild(label);
+
+  function wjPositionCaption(){
+    var native = document.getElementById('minute-timer-7N5eeOpd8p');
+    if (!native) return;
+    var r = native.getBoundingClientRect();
+    if (r.width === 0 && r.height === 0) { label.style.display = 'none'; return; }
+    label.style.display = '';
+    label.style.top = (r.top + window.scrollY - label.offsetHeight - 10) + 'px';
+    label.style.left = (r.left + window.scrollX + (r.width - label.offsetWidth) / 2) + 'px';
+  }
+
+  wjPositionCaption();
+  window.addEventListener('scroll', wjPositionCaption, {passive:true});
+  window.addEventListener('resize', wjPositionCaption);
+  setInterval(wjPositionCaption, 600);
+})();
+</script>
+<script>
+(function(){
   var glowWide=null, glowCore=null, pos=-60, started=false;
   function wjGlowWatchdog(){
     var line = document.getElementById('wj-anim-line');
