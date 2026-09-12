@@ -504,6 +504,28 @@ section:last-of-type {
 </script>
 <script>
 (function(){
+  var WJ_STEP2_SECONDS = 10; /* 네이티브 타이머(분:초) 설정과 반드시 같은 값이어야 함. 현재 테스트용 10초. 실제 오픈 전 600(10분)으로 복구 필요 */
+  var wjEndAt2 = Date.now() + WJ_STEP2_SECONDS * 1000;
+  var wjUnlocked2 = false;
+  function wjUnlock2(){
+    if (wjUnlocked2) return;
+    wjUnlocked2 = true;
+    var btn = document.getElementById('button-GsH_lyELk5');
+    if (btn) btn.classList.add('wj-btn-reveal');
+  }
+  function wjTick2(){
+    if (wjUnlocked2) return;
+    if (Date.now() >= wjEndAt2) wjUnlock2();
+  }
+  wjTick2();
+  var wjIv2 = setInterval(function(){
+    wjTick2();
+    if (wjUnlocked2) clearInterval(wjIv2);
+  }, 300);
+})();
+</script>
+<script>
+(function(){
   var glowWide=null, glowCore=null, pos=-60, started=false;
   function wjGlowWatchdog(){
     var line = document.getElementById('wj-anim-line');
