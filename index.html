@@ -507,26 +507,17 @@ section:last-of-type {
 </script>
 <script>
 (function(){
-  var WJ_STEP2_FALLBACK_SECONDS = 2400; /* 안전장치: 영상 종료(ended) 이벤트가 기술적 문제로 안 잡힐 경우를 대비해 넉넉하게 40분 뒤 강제 해제 (표시되는 20분 카운트다운보다 여유있게) */
-  var wjEndAt2 = Date.now() + WJ_STEP2_FALLBACK_SECONDS * 1000;
+  var WJ_STEP2_SECONDS = 1200; /* 20분 */
+  var wjEndAt2 = Date.now() + WJ_STEP2_SECONDS * 1000;
   var wjUnlocked2 = false;
-  var wjVideoAttached2 = false;
   function wjUnlock2(){
     if (wjUnlocked2) return;
     wjUnlocked2 = true;
     var btn = document.getElementById('button-GsH_lyELk5');
     if (btn) btn.classList.add('wj-btn-reveal');
   }
-  function wjAttachVideoEnd2(){
-    if (wjVideoAttached2) return;
-    var v = document.getElementById('bjVideoStep2');
-    if (!v) return;
-    wjVideoAttached2 = true;
-    v.addEventListener('ended', wjUnlock2);
-  }
   function wjTick2(){
     if (wjUnlocked2) return;
-    wjAttachVideoEnd2();
     if (Date.now() >= wjEndAt2) wjUnlock2();
   }
   wjTick2();
