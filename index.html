@@ -507,17 +507,26 @@ section:last-of-type {
 </script>
 <script>
 (function(){
-  var WJ_STEP2_SECONDS = 1980; /* 실제 영상 29분 + 4분 여유 = 33분. 모든 손님에게 동일하게 적용되는 오픈 시간 */
-  var wjEndAt2 = Date.now() + WJ_STEP2_SECONDS * 1000;
+  var WJ_STEP2_FALLBACK_SECONDS = 1980; /* 안전장치: 영상 종료(ended) 이벤트가 기술적 문제로 안 잡힐 경우 대비. 실제 영상 29분 + 여유 = 33분 */
+  var wjEndAt2 = Date.now() + WJ_STEP2_FALLBACK_SECONDS * 1000;
   var wjUnlocked2 = false;
+  var wjVideoAttached2 = false;
   function wjUnlock2(){
     if (wjUnlocked2) return;
     wjUnlocked2 = true;
     var btn = document.getElementById('button-GsH_lyELk5');
     if (btn) btn.classList.add('wj-btn-reveal');
   }
+  function wjAttachVideoEnd2(){
+    if (wjVideoAttached2) return;
+    var v = document.getElementById('bjVideoStep2');
+    if (!v) return;
+    wjVideoAttached2 = true;
+    v.addEventListener('ended', wjUnlock2);
+  }
   function wjTick2(){
     if (wjUnlocked2) return;
+    wjAttachVideoEnd2();
     if (Date.now() >= wjEndAt2) wjUnlock2();
   }
   wjTick2();
