@@ -538,11 +538,11 @@ section:last-of-type {
 </script>
 <script>
 (function(){
-  var minEl = document.getElementById('wjCd2Min');
-  var secEl = document.getElementById('wjCd2Sec');
   function pad(n){ return (n < 10 ? '0' : '') + n; }
   function updateDisplay(remain){
     if (remain < 0) remain = 0;
+    var minEl = document.getElementById('wjCd2Min');
+    var secEl = document.getElementById('wjCd2Sec');
     if (minEl) minEl.textContent = pad(Math.floor(remain / 60));
     if (secEl) secEl.textContent = pad(Math.floor(remain % 60));
   }
