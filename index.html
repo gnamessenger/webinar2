@@ -515,7 +515,21 @@ section:last-of-type {
     if (wjUnlocked2) return;
     wjUnlocked2 = true;
     var btn = document.getElementById('button-GsH_lyELk5');
-    if (btn) btn.classList.add('wj-btn-reveal');
+    if (btn) {
+      /* 카운트다운 박스 자리에 버튼을 바로 표시 */
+      var box = document.getElementById('wjCd2Box');
+      if (box && box.parentNode) {
+        if (!document.getElementById('wj-btn-inline-style')) {
+          var st = document.createElement('style');
+          st.id = 'wj-btn-inline-style';
+          st.textContent = '#button-GsH_lyELk5.wj-btn-reveal{display:flex!important;justify-content:center!important;width:100%!important;max-width:680px!important;box-sizing:border-box!important;margin:0 auto 20px!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important;}';
+          document.head.appendChild(st);
+        }
+        box.parentNode.insertBefore(btn, box);
+        box.style.setProperty('display', 'none', 'important');
+      }
+      btn.classList.add('wj-btn-reveal');
+    }
   }
   /* 영상 엘리먼트가 페이지 렌더링 중 교체될 수 있어(리스너가 죽음), 이벤트 대신 매번 현재 엘리먼트의 재생 위치를 읽는다 */
   function wjAttachVideoEnd2(){
