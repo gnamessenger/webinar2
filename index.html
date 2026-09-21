@@ -511,22 +511,17 @@ section:last-of-type {
   var WJ_STEP2_FALLBACK_SECONDS = 480; /* 안전장치: timeupdate 이벤트가 기술적 문제로 안 잡힐 경우 대비. 7분 30초 + 여유 = 8분 */
   var wjEndAt2 = Date.now() + WJ_STEP2_FALLBACK_SECONDS * 1000;
   var wjUnlocked2 = false;
-  var wjVideoAttached2 = false;
   function wjUnlock2(){
     if (wjUnlocked2) return;
     wjUnlocked2 = true;
     var btn = document.getElementById('button-GsH_lyELk5');
     if (btn) btn.classList.add('wj-btn-reveal');
   }
+  /* 영상 엘리먼트가 페이지 렌더링 중 교체될 수 있어(리스너가 죽음), 이벤트 대신 매번 현재 엘리먼트의 재생 위치를 읽는다 */
   function wjAttachVideoEnd2(){
-    if (wjVideoAttached2) return;
     var v = document.getElementById('bjVideoStep2');
     if (!v) return;
-    wjVideoAttached2 = true;
-    v.addEventListener('ended', wjUnlock2);
-    v.addEventListener('timeupdate', function(){
-      if (v.currentTime >= WJ_STEP2_UNLOCK_SECONDS) wjUnlock2();
-    });
+    if (v.currentTime >= WJ_STEP2_UNLOCK_SECONDS || v.ended) wjUnlock2();
   }
   function wjTick2(){
     if (wjUnlocked2) return;
@@ -550,23 +545,13 @@ section:last-of-type {
     if (minEl) minEl.textContent = pad(Math.floor(remain / 60));
     if (secEl) secEl.textContent = pad(Math.floor(remain % 60));
   }
-  var wjVideoAttachedCd = false;
+  /* 영상 엘리먼트가 페이지 렌더링 중 교체될 수 있어(리스너가 죽음), 이벤트 대신 매번 현재 엘리먼트의 재생 위치를 읽는다 */
   function attachVideoCd(){
-    if (wjVideoAttachedCd) return;
     var v = document.getElementById('bjVideoStep2');
     if (!v) return;
-    wjVideoAttachedCd = true;
-    v.addEventListener('timeupdate', function(){
-      updateDisplay(Math.ceil(450 - v.currentTime)); /* 450초 = 7분 30초 */
-    });
-    v.addEventListener('ended', function(){
-      updateDisplay(0);
-    });
+    updateDisplay(v.ended ? 0 : Math.ceil(450 - (v.currentTime || 0))); /* 450초 = 7분 30초 */
   }
-  var wjCdIv = setInterval(function(){
-    attachVideoCd();
-    if (wjVideoAttachedCd) clearInterval(wjCdIv);
-  }, 300);
+  setInterval(attachVideoCd, 300);
 })();
 </script>
 <script>
